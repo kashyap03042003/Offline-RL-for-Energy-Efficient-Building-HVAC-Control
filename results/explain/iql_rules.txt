@@ -1,0 +1,75 @@
+Distilled decision tree (depth 5) for iql; fidelity on held-out visited states = 0.966
+
+|--- occupied <= 0.50
+|   |--- T_in <= 16.07
+|   |   |--- dT_in <= -0.70
+|   |   |   |--- peak_kw_today <= 5.46
+|   |   |   |   |--- class: SP17
+|   |   |   |--- peak_kw_today >  5.46
+|   |   |   |   |--- class: SP17
+|   |   |--- dT_in >  -0.70
+|   |   |   |--- T_in <= 15.75
+|   |   |   |   |--- hour_sin <= 0.29
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- hour_sin >  0.29
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- T_in >  15.75
+|   |   |   |   |--- hour_cos <= 0.63
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- hour_cos >  0.63
+|   |   |   |   |   |--- class: OFF
+|   |--- T_in >  16.07
+|   |   |--- dT_in <= 2.11
+|   |   |   |--- hours_to_occ_start <= 0.88
+|   |   |   |   |--- T_out_fc3h <= 14.91
+|   |   |   |   |   |--- class: SP21
+|   |   |   |   |--- T_out_fc3h >  14.91
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- hours_to_occ_start >  0.88
+|   |   |   |   |--- T_out <= 28.77
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- T_out >  28.77
+|   |   |   |   |   |--- class: SP23
+|   |   |--- dT_in >  2.11
+|   |   |   |--- T_in <= 28.35
+|   |   |   |   |--- hours_to_occ_start <= 1.25
+|   |   |   |   |   |--- class: SP21
+|   |   |   |   |--- hours_to_occ_start >  1.25
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- T_in >  28.35
+|   |   |   |   |--- class: SP27
+|--- occupied >  0.50
+|   |--- T_in <= 21.87
+|   |   |--- dT_in <= 0.04
+|   |   |   |--- dT_in <= -0.02
+|   |   |   |   |--- class: SP21
+|   |   |   |--- dT_in >  -0.02
+|   |   |   |   |--- T_in <= 20.62
+|   |   |   |   |   |--- class: SP21
+|   |   |   |   |--- T_in >  20.62
+|   |   |   |   |   |--- class: SP21
+|   |   |--- dT_in >  0.04
+|   |   |   |--- hour_sin <= 0.35
+|   |   |   |   |--- class: OFF
+|   |   |   |--- hour_sin >  0.35
+|   |   |   |   |--- class: SP21
+|   |--- T_in >  21.87
+|   |   |--- T_in <= 22.96
+|   |   |   |--- T_out <= 8.08
+|   |   |   |   |--- T_in <= 22.15
+|   |   |   |   |   |--- class: SP22
+|   |   |   |   |--- T_in >  22.15
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- T_out >  8.08
+|   |   |   |   |--- dT_in <= 0.03
+|   |   |   |   |   |--- class: SP22
+|   |   |   |   |--- dT_in >  0.03
+|   |   |   |   |   |--- class: SP22
+|   |   |--- T_in >  22.96
+|   |   |   |--- dT_in <= 0.05
+|   |   |   |   |--- T_out_fc3h <= 19.00
+|   |   |   |   |   |--- class: SP23
+|   |   |   |   |--- T_out_fc3h >  19.00
+|   |   |   |   |   |--- class: SP23
+|   |   |   |--- dT_in >  0.05
+|   |   |   |   |--- class: OFF

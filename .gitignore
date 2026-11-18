@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.lock
+.DS_Store
+data/
+runs/
+runs_*/
+tools/
+Eplus-*-res*/
+# large / in-progress outputs (regenerate with scripts/run_all.sh)
+results/per_day.csv
+results/run_all.log
+results/sinergym/
+results/sinergym_transfer.json
+*.egg-info/

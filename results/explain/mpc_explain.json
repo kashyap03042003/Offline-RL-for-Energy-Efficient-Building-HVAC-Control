@@ -1,0 +1,31 @@
+{
+  "policy": "mpc",
+  "permutation_importance": {
+    "hour_cos": 0.3239,
+    "T_out": 0.2928,
+    "T_in": 0.2598,
+    "solar_kw_m2": 0.25775,
+    "weekday": 0.21115,
+    "hour_sin": 0.132,
+    "T_out_fc3h": 0.1317,
+    "peak_kw_today": 0.0889,
+    "occupied": 0.06975,
+    "dT_in": 0.0518,
+    "price_next2h": 0.02265,
+    "hours_to_occ_start": 0.01585,
+    "price": 0.01335
+  },
+  "tree_fidelity": 0.8815,
+  "action_hist": [
+    16594,
+    2958,
+    204,
+    203,
+    1209,
+    751,
+    5788,
+    14,
+    8,
+    1071
+  ]
+}

@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hvac_orl"
+version = "0.1.0"
+description = "Offline RL (CQL, IQL) for energy-efficient HVAC control on a simulated building"
+requires-python = ">=3.10"
+dependencies = ["numpy", "pandas", "matplotlib", "torch"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

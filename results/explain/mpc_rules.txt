@@ -1,0 +1,84 @@
+Distilled decision tree (depth 5) for mpc; fidelity on held-out visited states = 0.881
+
+|--- occupied <= 0.50
+|   |--- T_out <= -0.54
+|   |   |--- dT_in <= -0.07
+|   |   |   |--- T_out <= -4.67
+|   |   |   |   |--- class: OFF
+|   |   |   |--- T_out >  -4.67
+|   |   |   |   |--- T_in <= 16.43
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- T_in >  16.43
+|   |   |   |   |   |--- class: OFF
+|   |   |--- dT_in >  -0.07
+|   |   |   |--- hours_to_occ_start <= 1.88
+|   |   |   |   |--- price_next2h <= 0.12
+|   |   |   |   |   |--- class: SP20
+|   |   |   |   |--- price_next2h >  0.12
+|   |   |   |   |   |--- class: SP21
+|   |   |   |--- hours_to_occ_start >  1.88
+|   |   |   |   |--- T_in <= 16.88
+|   |   |   |   |   |--- class: SP17
+|   |   |   |   |--- T_in >  16.88
+|   |   |   |   |   |--- class: SP17
+|   |--- T_out >  -0.54
+|   |   |--- T_out <= 25.05
+|   |   |   |--- hours_to_occ_start <= 1.88
+|   |   |   |   |--- peak_kw_today <= 0.80
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- peak_kw_today >  0.80
+|   |   |   |   |   |--- class: SP21
+|   |   |   |--- hours_to_occ_start >  1.88
+|   |   |   |   |--- T_in <= 16.94
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- T_in >  16.94
+|   |   |   |   |   |--- class: OFF
+|   |   |--- T_out >  25.05
+|   |   |   |--- solar_kw_m2 <= 0.10
+|   |   |   |   |--- price <= 0.12
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- price >  0.12
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- solar_kw_m2 >  0.10
+|   |   |   |   |--- solar_kw_m2 <= 0.39
+|   |   |   |   |   |--- class: SP27
+|   |   |   |   |--- solar_kw_m2 >  0.39
+|   |   |   |   |   |--- class: SP27
+|--- occupied >  0.50
+|   |--- T_in <= 22.98
+|   |   |--- T_out <= 0.43
+|   |   |   |--- price_next2h <= 0.19
+|   |   |   |   |--- T_in <= 20.77
+|   |   |   |   |   |--- class: SP22
+|   |   |   |   |--- T_in >  20.77
+|   |   |   |   |   |--- class: SP21
+|   |   |   |--- price_next2h >  0.19
+|   |   |   |   |--- T_out <= -1.31
+|   |   |   |   |   |--- class: SP21
+|   |   |   |   |--- T_out >  -1.31
+|   |   |   |   |   |--- class: OFF
+|   |   |--- T_out >  0.43
+|   |   |   |--- T_out <= 11.73
+|   |   |   |   |--- dT_in <= -0.55
+|   |   |   |   |   |--- class: OFF
+|   |   |   |   |--- dT_in >  -0.55
+|   |   |   |   |   |--- class: OFF
+|   |   |   |--- T_out >  11.73
+|   |   |   |   |--- solar_kw_m2 <= 0.35
+|   |   |   |   |   |--- class: SP23
+|   |   |   |   |--- solar_kw_m2 >  0.35
+|   |   |   |   |   |--- class: SP22
+|   |--- T_in >  22.98
+|   |   |--- T_out_fc3h <= 4.56
+|   |   |   |--- solar_kw_m2 <= 0.09
+|   |   |   |   |--- class: OFF
+|   |   |   |--- solar_kw_m2 >  0.09
+|   |   |   |   |--- class: OFF
+|   |   |--- T_out_fc3h >  4.56
+|   |   |   |--- hour_cos <= 0.10
+|   |   |   |   |--- T_out_fc3h <= 29.47
+|   |   |   |   |   |--- class: SP23
+|   |   |   |   |--- T_out_fc3h >  29.47
+|   |   |   |   |   |--- class: SP23
+|   |   |   |--- hour_cos >  0.10
+|   |   |   |   |--- class: OFF

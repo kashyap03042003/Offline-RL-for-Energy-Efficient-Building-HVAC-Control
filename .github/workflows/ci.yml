@@ -1,0 +1,23 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install (CPU-only torch)
+        run: |
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -r requirements.txt
+      - name: Unit tests
+        run: pytest -q tests
+      - name: Pipeline smoke test (tiny data, few steps)
+        run: |
+          python scripts/generate_data.py --days 40 --out data/smoke.npz
+          python scripts/train.py --algo lcql --n-step 4 --reward-scale 1.0 --steps 300 --eval-every 300 --val-days 5 --data data/smoke.npz --out-dir runs_smoke
+          python scripts/train.py --algo iql --steps 300 --eval-every 300 --val-days 5 --data data/smoke.npz --out-dir runs_smoke
+          python scripts/train_dynamics.py --steps 200 --data data/smoke.npz --out-dir runs_smoke
+          python scripts/evaluate_all.py --runs runs_smoke --data data/smoke.npz --days 5 --scenarios in_distribution,heat_wave --safe lcql --out results_smoke

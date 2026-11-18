@@ -1,0 +1,31 @@
+{
+  "policy": "lcql",
+  "permutation_importance": {
+    "T_in": 0.4745,
+    "price_next2h": 0.3325,
+    "occupied": 0.27175,
+    "hour_cos": 0.20275,
+    "T_out": 0.20245,
+    "solar_kw_m2": 0.1532,
+    "peak_kw_today": 0.152,
+    "T_out_fc3h": 0.14575,
+    "hour_sin": 0.12085,
+    "dT_in": 0.1081,
+    "price": 0.09145,
+    "hours_to_occ_start": 0.08245,
+    "weekday": 0.08195
+  },
+  "tree_fidelity": 0.923,
+  "action_hist": [
+    14910,
+    2002,
+    5,
+    442,
+    3391,
+    4269,
+    3077,
+    10,
+    107,
+    587
+  ]
+}
