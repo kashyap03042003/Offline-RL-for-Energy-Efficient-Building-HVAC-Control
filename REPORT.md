@@ -131,6 +131,40 @@ before occupancy when it is cold and the next-2 h price is low, and otherwise st
 These distilled trees are a practical deployment path, because a facility manager can read and audit them.
 The rule files are `results/explain/*_rules.txt`.
 
+### 4.7 Transfer to EnergyPlus (Sinergym 5-zone office, New York TMY3, full year, zero-shot)
+
+The policies trained on the RC simulator were run without any retraining inside EnergyPlus 25.1. The test building is
+the Sinergym 5-zone office with VAV HVAC, a different size and different dynamics, under New York TMY3 weather.
+Cost and comfort are computed exactly as in training. Energy uses the building's HVAC electricity, and each policy is
+compared with the rule-based schedule run inside EnergyPlus.
+
+Main results use the "track" action mapping, where the EnergyPlus thermostat holds the requested setpoint as
+closely as Sinergym's setpoint limits allow.
+
+| Policy (seeds) | Cost saved, year | Energy saved, year | Comfort, year | Comfort, winter | Cost saved, shoulder |
+|---|---|---|---|---|---|
+| Rule-based | – | – | 99.7% | 98.9% | – |
+| IQL (3) | 4.9% ± 1.4 | 4.2% | 94.0% | 89.6% | 15.6% |
+| MPC (3) | 4.1% ± 0.4 | 3.1% | 89.4% | 71.1% | 9.1% |
+| CQL (1) | −4.2% | −4.5% | 96.0% | 89.7% | 0.3% |
+| Lagrangian CQL (3) | −4.8% ± 2.6 | −5.4% | 96.0% | 90.6% | −1.3% |
+
+* **There is a real sim-to-sim gap.** No learned policy matches the rule's comfort in EnergyPlus.
+  The losses are concentrated in winter. The likely cause, not yet verified step by step, is that the EnergyPlus building
+  responds to heating differently from the RC model, so "just-in-time" pre-heating learned on the RC building arrives late.
+* **MPC transfers worst on comfort** (71% in winter), because it plans with dynamics learned from the RC building's logs.
+  Its strength in-distribution, an accurate model of *that* building, is exactly what breaks.
+  It would need dynamics fitted to the new building's own logs, which the model-based pipeline already supports.
+* **IQL is the most robust learned policy.** It keeps ~5% cost savings at 94% comfort, and most of its savings come
+  from spring and autumn (15.6% cost), where free-floating is safe.
+* **The action interface matters.** A first adapter mapped setpoint *s* to a heating setpoint of *s* − 1 ("band"),
+  which made every learned policy look worse on comfort (62–66% in winter) but better on energy (IQL 13% saved).
+  Both mappings are in `results/energyplus/summary.csv`.
+
+Takeaway: offline RL from one building's logs does **not** transfer zero-shot to a different building at the comfort
+level of a well-tuned schedule. For deployment, train or at least refit the dynamics model on the target building's
+own BMS logs, and keep the OOD fallback.
+
 ## 5. Comparison with the original claims
 
 The original project description claimed −18.5% energy, −21.4% cost and 99.2% comfort. These experiments
@@ -143,7 +177,7 @@ mainly because the baseline schedule already sets back overnight, which leaves l
 
 * The building, dataset and evaluation are all simulated. The OOD scenarios are designed perturbations rather than field data.
 * MPC assumes the occupancy schedule and tariff are known, plus an interpolated 3 h outdoor-temperature forecast.
-* The EnergyPlus/Sinergym transfer adapter (`scripts/sinergym_transfer.py`) is written but has not been executed.
+* EnergyPlus transfer is zero-shot on a single building and climate (Section 4.7). Policies were not re-tuned for it.
 * Ablations use a single training seed (multi-zone uses 3).
 
 ## 7. Reproduce

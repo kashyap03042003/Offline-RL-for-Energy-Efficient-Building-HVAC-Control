@@ -44,6 +44,10 @@ Model-free agents lose most of their advantage OOD and drop to 72–86% comfort 
 **Off-policy evaluation (35 candidate policies):** FQE ranks policies well (Spearman 0.82) and its top pick is
 within 0.02 of the best true value; importance sampling fails at this horizon (PDWIS Spearman 0.33).
 
+**EnergyPlus transfer (zero-shot, Sinergym 5-zone office, full year):** IQL keeps a 4.9% cost saving but drops to
+94% comfort (rule: 99.7%), and MPC drops to 89%. Policies learned from one building's logs need the target
+building's own data, as shown in [REPORT.md §4.7](REPORT.md).
+
 ![scenario results](results/figures/scenario_results.png)
 
 Details: [results/summary.md](results/summary.md), [REPORT.md](REPORT.md).
@@ -103,7 +107,7 @@ Individual steps:
   logged by a fixed behavior policy that the learner cannot query. Swapping in real logs needs only
   the same (obs, action, reward, next_obs) arrays, but then online Monte Carlo evaluation needs a calibrated
   model of that building (or off-policy evaluation).
-* RC dynamics with idealized setpoint tracking. The EnergyPlus/Sinergym transfer adapter
-  ([scripts/sinergym_transfer.py](scripts/sinergym_transfer.py)) is written but has not been run yet.
+* RC dynamics with idealized setpoint tracking. Zero-shot transfer to EnergyPlus
+  ([scripts/sinergym_transfer.py](scripts/sinergym_transfer.py)) shows a clear comfort gap in winter.
 * MPC uses the known occupancy schedule and tariff and a perfect 3-hour temperature forecast interpolation.
 * Ablations use a single training seed.
